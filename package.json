@@ -1,0 +1,40 @@
+{
+  "name": "sync-sock",
+  "version": "0.1.0",
+  "description": "A small framework for syncing data between clients and node via Socket.IO",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/M-J-Hooper/sync-sock.git"
+  },
+  "keywords": [],
+  "author": "Matt Hooper <matthewjhooper94@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/M-J-Hooper/sync-sock/issues"
+  },
+  "dependencies": {
+    "socket.io": "^2.0.3"
+  },
+  "devDependencies": {
+    "chai": "^4.1.1",
+    "express": "^4.16.2",
+    "gulp": "^3.9.1",
+    "gulp-beautify": "^2.0.1",
+    "gulp-jshint": "^2.0.4",
+    "gulp-mocha": "^4.3.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-util": "^3.0.8",
+    "jshint": "^2.9.5",
+    "jshint-stylish": "^2.2.1",
+    "mocha": "^3.5.0"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec"
+  }
+}
