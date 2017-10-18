@@ -2,7 +2,6 @@ var gulp = require('gulp');
 var jshint = require('gulp-jshint');
 var beautify = require('gulp-beautify');
 var mocha = require('gulp-mocha');
-var rename = require('gulp-rename');
 
 var p = require('./package.json');
 
@@ -31,8 +30,7 @@ gulp.task('test', function() {
 });
 
 gulp.task('move', function() {
-    return gulp.src('client.js')
-        .pipe(rename(p.name + '.js'))
+    return gulp.src('sync-sock-client.js')
         .pipe(gulp.dest('example/client/'));
 });
 
