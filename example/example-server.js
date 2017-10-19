@@ -9,9 +9,14 @@ var data = {
     b: 'I\'m some more data',
     c: 'Hey, I\'m the best bit of data'
 };
+var persistent = [data];
+
 sync(serv, {
-    getData: function() {
+    getData: function() { //get from db etc.
         return data;
+    },
+    persist: function(dataToPersist) { //write to db etc.
+        persistent.push(dataToPersist);
     }
 });
 

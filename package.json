@@ -14,6 +14,7 @@
     "url": "https://github.com/M-J-Hooper/sync-sock/issues"
   },
   "dependencies": {
+    "enrich-js": "^0.1.0",
     "socket.io": "^2.0.3"
   },
   "devDependencies": {

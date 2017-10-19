@@ -1,6 +1,6 @@
 /*global enrich*/
 
-var sync = function(io, fns) {
+var sync = function(io) {
     if(!io) throw new Error('Socket.IO missing!');
     
     var socket = io();
