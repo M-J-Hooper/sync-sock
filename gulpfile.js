@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var jshint = require('gulp-jshint');
 var beautify = require('gulp-beautify');
 var mocha = require('gulp-mocha');
+var nodemon = require('gulp-nodemon');
 
 var p = require('./package.json');
 
@@ -13,7 +14,7 @@ var paths = {
 var alljs = path => path+'/**/*.js';
 paths.defaultjs = paths.main.concat([alljs(paths.test), alljs(paths.example)]);
 
-var defaultTasks = ['lint', 'test', 'move'];
+var defaultTasks = ['lint', 'test', 'move', 'listen'];
 
 gulp.task('default', defaultTasks.concat('watch'));
 
@@ -33,6 +34,12 @@ gulp.task('test', function() {
 gulp.task('move', function() {
     return gulp.src('sync-sock-client.js')
         .pipe(gulp.dest('example/client/'));
+});
+
+gulp.task('listen', function() {
+    nodemon({
+        script: 'example/example-server.js'
+    });
 });
 
 gulp.task('beautify', function() {

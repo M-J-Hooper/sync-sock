@@ -15,4 +15,4 @@ app.use('/client', express.static(__dirname + '/client'));
 
 var port = process.env.PORT || 3000;
 serv.listen(port);
-console.log('Server started on port ' + port);
+console.log('Example server started on port ' + port);
