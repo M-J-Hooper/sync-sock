@@ -8,14 +8,14 @@ Work in progress...
 ## Installation
 
 ```bash
-
+npm install sync-sock --save
 ```
+Bundled with sync-sock-client.js which must be included in html.
+Dependency, enrich-js, must also be included in html for use in the client.
 
 ## Usage
 
-```js
-
-```
+See example directory for simple working example.
 
 ## Contribution
 
