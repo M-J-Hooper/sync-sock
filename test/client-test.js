@@ -1,7 +1,7 @@
 var expect = require('chai').expect;
 
-describe('Something', function() {
-    describe('Something something', function() {
+describe('Client-side library', function() {
+    describe('Initialisation', function() {
         // it('Something something else', function() {
         //     expect('this').to.equal('this');
         // });

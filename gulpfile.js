@@ -36,7 +36,7 @@ gulp.task('move', function() {
 });
 
 gulp.task('beautify', function() {
-    return gulp.src(paths.defaultjs)
+    return gulp.src(paths.defaultjs, {base: "./"})
         .pipe(beautify({
             indent_size: 4
         }))

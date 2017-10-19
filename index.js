@@ -6,4 +6,6 @@ module.exports = function(serv) {
 
         socket.on('disconnect', function() {});
     });
+    
+    return io;
 };
