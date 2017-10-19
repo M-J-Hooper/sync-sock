@@ -6,8 +6,12 @@ var sync = function(io) {
     var socket = io();
     
     return new Promise(function(resolve, reject) {
-       socket.on('init', function(data) {
-            data = enrich(data);
+       socket.on('init', function(initData) {
+            var data = enrich(initData);
+            
+            data.on('change', function(changeData) {
+                socket.emit('change', changeData);    
+            });
               
             resolve(data);
        });

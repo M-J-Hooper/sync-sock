@@ -10,5 +10,15 @@
     sync(io).then(function(data) {
         console.log(data);
         updateFromData(data);
+        
+        document.getElementById("a").addEventListener('input', function(e) {
+            data.a = this.value;
+        });
+        document.getElementById("b").addEventListener('input', function(e) {
+            data.b = this.value;
+        });
+        document.getElementById("c").addEventListener('input', function(e) {
+            data.c = this.value;
+        });
     });
 })(sync, io);

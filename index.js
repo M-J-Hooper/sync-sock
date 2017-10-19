@@ -9,8 +9,9 @@ module.exports = function(serv, fns) {
         
         var data = enrich(fns.getData());
         
-        socket.on('change', function(command) {
-            fns.persist(data.revert());
+        socket.on('change', function(changeData) {
+            console.log(changeData);
+            //fns.persist(data.revert());
         });
 
         //socket.on('disconnect', function() {});
