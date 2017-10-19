@@ -12,8 +12,8 @@ var data = {
 var persistent = [data];
 
 sync(serv, {
-    getData: function() { //get from db etc.
-        return data;
+    get: function() { //get from db etc.
+            return data;
     },
     persist: function(dataToPersist) { //write to db etc.
         persistent.push(dataToPersist);

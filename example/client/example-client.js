@@ -1,16 +1,13 @@
 /*global sync, io*/
 
 (function(sync, io) {
-    function updateFromData(data) {
-        document.getElementById("a").value = data.a;
-        document.getElementById("b").value = data.b;
-        document.getElementById("c").value = data.c;
-    }
-    
-    sync(io).then(function(data) {
-        console.log(data);
-        updateFromData(data);
-        
+    sync(io, {
+        view: function(updateData) { //update dom with updated data
+            document.getElementById("a").value = updateData.a;
+            document.getElementById("b").value = updateData.b;
+            document.getElementById("c").value = updateData.c;
+        }
+    }).then(function(data) {
         document.getElementById("a").addEventListener('input', function(e) {
             data.a = this.value;
         });
