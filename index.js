@@ -1,4 +1,5 @@
-module.exports = function(serv, options) {
+module.exports = function(app, options) {
+    var serv = require('http').Server(app);
     var io = require('socket.io')(serv, {});
     var enrich = require('enrich-js');
     

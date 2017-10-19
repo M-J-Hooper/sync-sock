@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-var serv = require('http').Server(app);
+
 
 
 //sync-sock setup
@@ -14,7 +14,7 @@ var data = { //fake user data to keep in sync
 };
 var persistent = [data]; //fake persistent data storage
 
-sync(serv, {
+sync(app, {
     getData: function() { //get from db etc.
         return persistent[persistent.length - 1];
     },
