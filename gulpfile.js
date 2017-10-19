@@ -7,10 +7,11 @@ var p = require('./package.json');
 
 var paths = {
     main: ['index.js', 'client.js'],
+    example: 'example',
     test: 'test'
 };
 var alljs = path => path+'/**/*.js';
-paths.defaultjs = paths.main.concat(alljs(paths.test));
+paths.defaultjs = paths.main.concat([alljs(paths.test), alljs(paths.example)]);
 
 var defaultTasks = ['lint', 'test', 'move'];
 
