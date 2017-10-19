@@ -14,7 +14,7 @@ var paths = {
 var alljs = path => path+'/**/*.js';
 paths.defaultjs = paths.main.concat([alljs(paths.test), alljs(paths.example)]);
 
-var defaultTasks = ['lint', 'test', 'move', 'listen'];
+var defaultTasks = ['lint', 'test', 'move'];
 
 gulp.task('default', defaultTasks.concat('watch'));
 

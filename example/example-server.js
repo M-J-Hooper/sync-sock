@@ -3,8 +3,16 @@ var app = express();
 var serv = require('http').Server(app);
 
 var sync = require('../index.js');
-sync(serv, {
 
+var data = {
+    a: 'Wow this is some String data',
+    b: 'I\'m some more data',
+    c: 'Hey, I\'m the best bit of data'
+};
+sync(serv, {
+    getData: function() {
+        return data;
+    }
 });
 
 
