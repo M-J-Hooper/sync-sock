@@ -2,24 +2,30 @@ var express = require('express');
 var app = express();
 var serv = require('http').Server(app);
 
+
+//sync-sock setup
+
 var sync = require('../index.js');
 
-var data = {
+var data = { //fake user data to keep in sync
     a: 'Wow this is some String data',
     b: 'I\'m some more data',
     c: 'Hey, I\'m the best bit of data'
 };
-var persistent = [data];
+var persistent = [data]; //fake persistent data storage
 
 sync(serv, {
-    get: function() { //get from db etc.
-            return data;
+    getData: function() { //get from db etc.
+        return persistent[persistent.length - 1];
     },
-    persist: function(dataToPersist) { //write to db etc.
+    persistData: function(dataToPersist) { //write to db etc.
         persistent.push(dataToPersist);
     }
+    //persistRate: 4
 });
 
+
+//standard server setup
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/client/index.html');

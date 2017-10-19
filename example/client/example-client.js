@@ -1,13 +1,17 @@
 /*global sync, io*/
 
 (function(sync, io) {
-    sync(io, {
-        view: function(updateData) { //update dom with updated data
+    sync({
+        updateView: function(updateData) { //update dom with updated data
             document.getElementById("a").value = updateData.a;
             document.getElementById("b").value = updateData.b;
             document.getElementById("c").value = updateData.c;
         }
     }).then(function(data) {
+        //once initial data fetched,
+        //setup dom listeners to change data object
+        //(here data has change-tracking, undo, redo, etc. via enrich-js)
+        
         document.getElementById("a").addEventListener('input', function(e) {
             data.a = this.value;
         });
