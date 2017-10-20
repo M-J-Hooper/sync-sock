@@ -24,10 +24,10 @@ var sync = function(options) {
             socket.on('change', function(changeData) {
                 console.log('Incoming change', changeData);
                 
-                //data.change('change', changeData);
+                data.change(changeData);
                 options.updateView(changeData);
             });
-              
+            
             resolve(data);
        });
     });

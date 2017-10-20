@@ -7,7 +7,7 @@ var nodemon = require('gulp-nodemon');
 var p = require('./package.json');
 
 var paths = {
-    main: ['index.js', 'client.js'],
+    main: ['index.js', 'sync-sock-client.js'],
     example: 'example',
     test: 'test'
 };

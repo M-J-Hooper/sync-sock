@@ -1,5 +1,4 @@
-module.exports = function(app, options) {
-    var serv = require('http').Server(app);
+module.exports = function(serv, options) {
     var io = require('socket.io')(serv, {});
     var enrich = require('enrich-js');
     
@@ -15,16 +14,17 @@ module.exports = function(app, options) {
         //incoming change from some client to be sent to other clients for syncing
         socket.on('change', function(changeData) {
             console.log('Incoming change', changeData);
+            data.change(changeData);
             
-            //data.change('change', changeData);
             if(options.persistData && persistCounter%persistRate == 0) {
                 options.persistData(data.revert());
                 console.log('Data persisted');
             }
+            
+            //emit to other clients here
         });
 
         //socket.on('disconnect', function() {});
-        
         
         socket.emit('init', data.revert());
     });
