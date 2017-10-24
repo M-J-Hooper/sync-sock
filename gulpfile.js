@@ -31,7 +31,7 @@ gulp.task('test', function() {
         }));
 });
 
-gulp.task('move', function() {
+gulp.task('move-client', function() {
     return gulp.src('sync-sock-client.js')
         .pipe(gulp.dest('example/client/'));
 });

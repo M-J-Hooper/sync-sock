@@ -15,8 +15,11 @@ var data = { //fake user data to keep in sync
 var persistent = [data]; //fake persistent data storage
 
 sync(serv, {
-    getData: function() { //get from db etc.
+    getData: function(socket) { //get from db etc.
         return persistent[persistent.length - 1];
+    },
+    getRoom: function(socket) {
+        return "A nice little room";
     },
     persistData: function(dataToPersist) { //write to db etc.
         persistent.push(dataToPersist);

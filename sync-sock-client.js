@@ -1,34 +1,42 @@
 /*global enrich, io*/
 
-var sync = function(options) {
+var sync = function(methods) {
     if(!io) throw new Error('Socket.IO not found!');
     var socket = io();
     
-    if(!options.updateView) throw new Error('sync-sock-client needs an updateView function!');
+    if(!methods.updateView) throw new Error('sync-sock-client needs an updateView function!');
+    
     
     return new Promise(function(resolve, reject) {
-       socket.on('init', function(initData) {
+        socket.on('sync-sock-init', function(initData) {
             console.log('Initial data', initData);
            
             var data = enrich(initData);
-            options.updateView(data);
+            methods.updateView(data);
             
-            //data changed on client so send to server for syncing elsewhere
-            data.on('change', function(changeData) {
-                console.log('Outgoing change', changeData);
-                
-                socket.emit('change', changeData);    
-            });
+            //client event so send to server for syncing elsewhere
+            function dataHandlerFactory(event) {
+                return function(eventData) {
+                    methods.updateView(data);
+                    console.log('Outgoing ' + event, eventData);
+                    socket.emit('sync-sock-' + event, eventData);    
+                };
+            }
             
-            //incoming change from other client or server
-            socket.on('change', function(changeData) {
-                console.log('Incoming change', changeData);
-                
-                data.change(changeData);
-                options.updateView(changeData);
-            });
+            //incoming event from other client or server
+            function socketHandlerFactory(event) {
+                return function(eventData) {
+                    console.log('Incoming ' + event, eventData);
+                    data[event](eventData);
+                    methods.updateView(data);
+                };
+            }
             
+            for(var event of ['change', 'undo', 'redo']) {
+                data.on(event, dataHandlerFactory(event));
+                socket.on('sync-sock-' + event, socketHandlerFactory(event));
+            }
             resolve(data);
-       });
+        });
     });
 };
