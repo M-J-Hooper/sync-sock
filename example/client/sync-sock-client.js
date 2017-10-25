@@ -17,9 +17,9 @@ var sync = function(methods) {
             //client event so send to server for syncing elsewhere
             function dataHandlerFactory(event) {
                 return function(eventData) {
-                    methods.updateView(data);
                     console.log('Outgoing ' + event, eventData);
                     socket.emit('sync-sock-' + event, eventData);    
+                    methods.updateView(data);
                 };
             }
             
@@ -27,7 +27,11 @@ var sync = function(methods) {
             function socketHandlerFactory(event) {
                 return function(eventData) {
                     console.log('Incoming ' + event, eventData);
-                    data[event](eventData);
+                    
+                    var args = [eventData]; //undo/redo need different args
+                    if(event != 'change') args.unshift(false);
+                    
+                    data[event].apply(data, args);
                     methods.updateView(data);
                 };
             }

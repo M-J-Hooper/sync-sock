@@ -21,8 +21,9 @@ sync(serv, {
     getRoom: function(socket) {
         return "A nice little room";
     },
-    persistData: function(dataToPersist) { //write to db etc.
+    persistData: function(dataToPersist, room) { //write to db etc.
         persistent.push(dataToPersist);
+        console.log('Data persisted to: ', room);
     }
     //persistRate: 4
 });
